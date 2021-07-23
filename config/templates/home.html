@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}BLOG{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<div style="float:left">
+  <span><a href="{% url 'post-create' %}">POST QOLDIRISH</a></span>
+</div>
+<div style="float:right">
+  SALOM <span style="color:green"><a href="{% url 'user-detail' pk=user.id %}">{{ user.username }}</a></span>
+  <span><a href="{% url 'logout' %}">CHIQISH</a></span>
+</div>
+{% else %}
+<div style="float:right">
+  <a href="{% url 'login' %}">KIRISH</a> |
+  <a href="{% url 'signup' %}">REGISTRATSIYADAN O'TISH</a>
+</div>
+{% endif %}
+
+<div style="position:relative; left:20px; top:50px; float:right;">
+  <h2>Kategoriyalar</h2>
+  {% for category in category_context %}
+  <li style="display:inline"><a href="{% url 'posts-by' by='category' id=category.id %}">{{ category }}</a></li>
+  {% endfor %}
+</div>
+<div style="position:relative; left:20px; top:50px; float:left;">
+  <h2>Hududlar</h2>
+  {% for region in region_context %}
+  <li style="display:inline"><a href="{% url 'posts-by' by='region' id=region.id %}" >{{ region }}</a></li>
+  {% endfor %}
+</div>
+
+
+{% for post in object_list %}
+<div style="padding:200px 100px 100px 100px">
+<p>{{ post.name }}</p>
+<img src="http://127.0.0.1:8000/media/{{ post.image }}" />
+  <p>{{ post.description|slice:10 }}</p><a href="{% url 'detail' pk=post.id %}">Batafsil</a>
+</div>
+{% endfor %}
+
+{% endblock %}

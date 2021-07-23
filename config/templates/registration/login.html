@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}KIRISH{% endblock %}
+
+{% block content %}
+<h2>KIRISH</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">KIRISH</button>
+</form>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% block title %}POST YARATISH{% endblock %}
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+     <input id="id_image" type="file" class="" name="image">
+    <input type="submit" value="Saqlash">
+</form>

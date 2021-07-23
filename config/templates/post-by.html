@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    {% for post in obj %}
+    <div style="padding:100px 100px 100px 100px">
+        <p>{{ post.name }}</p>
+        <img src="http://127.0.0.1:8000/media/{{ post.image }}" />
+        <p>{{ post.description|slice:10 }}</p><a href="{% url 'detail' pk=post.id %}">Batafsil</a>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
